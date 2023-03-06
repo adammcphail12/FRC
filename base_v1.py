@@ -33,7 +33,7 @@ def currency(x):
     return '${:.2f}'.format(float(x))
 
 
-# Gets the exspenses, returns a list which has the data frame.
+# Gets the expenses, returns a list which has the data frame.
 def get_expenses(var_fixed):
     # set up dictionaries and lists
 
@@ -90,6 +90,10 @@ variable_sub = variable_expenses[1]
 
 # **** Printing Area ****
 
-print()
+
+print('\n********** Variable Costs **********\n')
+print(variable_frame)
+print('\nTotal Variable Costs: {}'.format(variable_sub))
+
+print('\n********** Fixed Costs **********\n')
 print(variable_frame[['Cost']])
-print()
