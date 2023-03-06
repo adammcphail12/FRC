@@ -80,6 +80,14 @@ def get_expenses(var_fixed):
     return [expense_frame, sub_total]
 
 
+# Fixed Costs Gen
+def fixed_costs(header, frame, expenses):
+    print('\n********** {} **********\n'.format(header))
+    print(frame)
+    print('\nTotal Variable Costs: {}'.format(expenses))
+    return ''
+
+
 # ------ Main Routine starts here ------
 product_name = not_blank('Product Name: ', 'The product name can not be blank')
 
@@ -87,13 +95,10 @@ variable_expenses = get_expenses('variable')
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
 
-
 # **** Printing Area ****
 
+fixed_costs('Variable Costs',variable_frame,variable_sub)
 
-print('\n********** Variable Costs **********\n')
-print(variable_frame)
-print('\nTotal Variable Costs: {}'.format(variable_sub))
 
 print('\n********** Fixed Costs **********\n')
 print(variable_frame[['Cost']])
