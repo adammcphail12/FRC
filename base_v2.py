@@ -1,6 +1,17 @@
 import pandas
 
 
+def string_check(question, valid_1, valid_2, valid_3, valid_4, error):
+    while True:
+        user = input('{} '.format(question)).lower()
+        if user == valid_1 or user == valid_2:
+            return valid_1
+        elif user == valid_3 or user == valid_4:
+            return valid_3
+        else:
+            print(error)
+
+
 # checks users enter a number (float / int) more than zero, takes in
 # custom question and error message
 def int_float_check(question, error, num_type):
@@ -108,11 +119,9 @@ if fixed == 'yes':
 
 print('Variable Costs')
 
-
 variable_expenses = get_expenses(False)
 variable_frame = variable_expenses[0]
 variable_sub = variable_expenses[1]
-
 
 # **** Printing Area ****
 
@@ -125,3 +134,15 @@ if fixed == 'yes':
     print('\n********** Fixed Costs **********\n')
     print(fixed_frame[['Cost']])
     print('\nTotal Fixed Costs: {}'.format(fixed_sub))
+    total = fixed_sub + variable_sub
+else:
+    total = variable_sub
+
+profit_goal = [int_float_check('What is your desired profit goal? ', 'This has to be a number greater then 0',
+                               float),
+               string_check('Is this in dollars (enter $) or a percentage (enter %)? ', '$', 'Dollars', '%',
+                            'percent', 'That is not a valid answer, Valid answers include $ or %')]
+
+print('Ok so your profit goal is {}{}'.format(profit_goal[1], profit_goal[0]))
+
+
