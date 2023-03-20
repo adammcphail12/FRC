@@ -51,7 +51,9 @@ else:
     target = profit_goal[0] + expense
     print(f'Your target is ${target}')
 
+minimum_price = target / number_of_items
 suggested_price = round_up(target / number_of_items, 5)
 
+print(f'Minimum Price : ${minimum_price}')
 print(f'Sell each item for ${suggested_price}')
 

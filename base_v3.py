@@ -1,4 +1,5 @@
 import pandas
+import math
 
 
 def string_check(question, valid_1, valid_2, valid_3, valid_4, error):
@@ -108,6 +109,11 @@ def yes_no(question):
             print('Please Enter Yes Or No.')
 
 
+# this function rounds up numbers to nearst whole number
+def round_up(amount, round_to):
+    return int(math.ceil(amount / round_to)) * round_to
+
+
 # ------ Main Routine starts here ------
 product_name = not_blank('Product Name: ', 'The product name can not be blank')
 
@@ -143,6 +149,21 @@ profit_goal = [int_float_check('What is your desired profit goal? ', 'This has t
                string_check('Is this in dollars (enter $) or a percentage (enter %)? ', '$', 'Dollars', '%',
                             'percent', 'That is not a valid answer, Valid answers include $ or %')]
 
-print('Ok so your profit goal is {}{}'.format(profit_goal[1], profit_goal[0]))
+print('\nOk so your profit goal is {}{}\n'.format(profit_goal[1], profit_goal[0]))
 
+number_of_items = int_float_check('What is the total quantity you are selling?', 'That is not a whole, positive number',
+                                  int)
 
+if profit_goal[1] == '%':
+    print(f'Your profit goal is {profit_goal[0]}{profit_goal[1]}')
+    target = ((total * profit_goal[0]) / 100) + total
+    print(f'Your target is ${target}')
+else:
+    print('Ok so your profit goal is {}{}'.format(profit_goal[1], profit_goal[0]))
+    target = profit_goal[0] + total
+    print(f'Your target is ${target}')
+
+minimum_price = target / number_of_items
+suggested_price = round_up(target / number_of_items, 3)
+
+print(f'The minimum price to sell your product for is {minimum_price}, But the recommended price is {suggested_price}')
